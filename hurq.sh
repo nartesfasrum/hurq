@@ -8,6 +8,11 @@ then
 	ipfs repo gc
 fi
 
+if [[ -f "$HASH_PATH" ]]
+then
+	rm $HASH_PATH
+fi
+
 mkdir -p $VIDEO_PATH
 
 if [ "$CHANNEL_TYPE" = "0" ]
