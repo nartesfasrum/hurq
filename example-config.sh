@@ -1,7 +1,6 @@
 # channel data
 CHANNEL_TYPE=1				# 0 to use CHANNEL_ID, 1 to use USER_ID
-CHANNEL_ID=UCDFD8RdIL2FxNfkKkus5RSQ	# channel ID - typically used on smaller or nonverified channels
-USER_ID=vekchannel			# user ID - typically used for larger or verified channels
+CHANNEL_ID=UCDFD8RdIL2FxNfkKkus5RSQ	# the ID from the channer/user URL
 
 # paths
 CACHE=~/hurq/downloaded-videos.txt	# path for the list of already downloaded videos
