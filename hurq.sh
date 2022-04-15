@@ -23,6 +23,12 @@ then
 fi
 if [ "$CHANNEL_TYPE" = "1" ]
 then
+	CHANNEL_URL=https://www.youtube.com/c/$USER_ID/videos
+	CHANNEL_DIR="${VIDEO_PATH}/${CHANNEL_ID}"
+	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE $CHANNEL_URL -P $VIDEO_PATH -o '%(channel)s/%(title)s.%(ext)s'
+fi
+if [ "$CHANNEL_TYPE" = "2" ]
+then
 	CHANNEL_URL=https://www.youtube.com/user/$USER_ID/videos
 	CHANNEL_DIR="${VIDEO_PATH}/${CHANNEL_ID}"
 	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE $CHANNEL_URL -P $VIDEO_PATH -o '%(channel)s/%(title)s.%(ext)s'
