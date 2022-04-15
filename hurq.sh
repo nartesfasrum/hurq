@@ -2,8 +2,11 @@
 
 source config.sh
 
-ipfs pin ls --type recursive | cut -d' ' -f1 | xargs -n1 ipfs pin rm
-ipfs repo gc
+if [[ $(ipfs pin ls --type recursive) ]]
+then
+	ipfs pin ls --type recursive | cut -d' ' -f1 | xargs -n1 ipfs pin rm
+	ipfs repo gc
+fi
 
 mkdir -p $VIDEO_PATH
 
