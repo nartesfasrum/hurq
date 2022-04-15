@@ -1,12 +1,6 @@
 #!/bin/bash
 
-USER_ID=
-CHANNEL_ID=
-CHANNEL_TYPE=1
-
-CACHE=videos.txt
-HASH_PATH=~/hurq-hash.txt
-VIDEO_PATH=~/hurq/videos
+source config.sh
 
 ipfs pin ls --type recursive | cut -d' ' -f1 | xargs -n1 ipfs pin rm
 ipfs repo gc

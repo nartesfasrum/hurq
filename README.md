@@ -13,15 +13,9 @@ Note that this script explicitly deletes existing ipfs shares as it runs; please
 
 Make sure you have your IPFS node [initialised](https://docs.ipfs.io/how-to/command-line-quick-start/#initialize-the-repository).
 
-## config
-
-If the YouTube channel to be archived has a user ID, set `CHANNEL_TYPE` to 1 and set the `USER_ID` value to the user ID from the channel (e.g. vekchannel).
-
-If the YouTube channel to be archived has a channel ID, set `CHANNEL_TYPE` to 0 and set the `CHANNEL_ID` value to the channel ID (e.g. UCDFD8RdIL2FxNfkKkus5RSQ).
-
 ## run
 
-Set configuration variables as appropriate.
+Copy `example-config.sh` to `config.sh` & set configuration variables as appropriate. Information on what each variable does is in the comments of `example-config.sh`.
 
 Ensure hurq.sh has the execute permission set.
 
