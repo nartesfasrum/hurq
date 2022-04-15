@@ -4,6 +4,7 @@ USER_ID=
 CHANNEL_ID=
 CHANNEL_TYPE=1
 CACHE=videos.txt
+HASH_PATH=~/hurq-hash.txt
 
 ipfs pin ls --type recursive | cut -d' ' -f1 | xargs -n1 ipfs pin rm
 ipfs repo gc
@@ -22,4 +23,4 @@ then
 fi
 
 ipfs add -r $CHANNEL_DIR
-ipfs pin ls --type recursive > ~/hurq-hash.txt
+ipfs pin ls --type recursive > $HASH_PATH
