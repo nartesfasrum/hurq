@@ -1,10 +1,36 @@
 #!/bin/bash
 
-source config.sh
+ARGS=$(getopt -a --options c:t:p: --long "channel-id:,channel-type:,path:" -- "$@")
+eval set -- "$ARGS"
 
-CACHE_PATH=$HURQ_PATH/downloaded-videos.txt
-HASH_PATH=$HURQ_PATH/hurq-hash.txt
-VIDEO_PATH=$HURQ_PATH/videos
+while true; do
+	case "$1" in
+		-c|--channel-id)
+			CHANNEL_ID="$2"
+			echo $CHANNEL_ID
+			shift 2;;
+		-t|--channel-type)
+			CHANNEL_TYPE="$2"
+			echo $CHANNEL_TYPE
+			shift 2;;
+		-p|--path)
+			HURQ_PATH="$2"
+			echo $HURQ_PATH
+			shift 2;;
+		--)
+			break;;
+		*)
+			printf "Unknown option %s\n" "$1"
+			exit 1;;
+	esac
+done
+
+CACHE_PATH=$HURQ_PATH/$CHANNEL_ID/downloaded-videos.txt
+HASH_PATH=$HURQ_PATH/$CHANNEL_ID/hurq-hash.txt
+VIDEO_PATH=$HURQ_PATH/$CHANNEL_ID/videos
+
+mkdir -p $HURQ_PATH
+mkdir -p $VIDEO_PATH
 
 if [[ $(ipfs pin ls --type recursive) ]]
 then
@@ -16,8 +42,6 @@ if [[ -f "$HASH_PATH" ]]
 then
 	rm $HASH_PATH
 fi
-
-mkdir -p $VIDEO_PATH
 
 if [ "$CHANNEL_TYPE" = "0" ]
 then
