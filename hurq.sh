@@ -24,7 +24,6 @@ done
 
 CACHE_PATH=$HURQ_PATH/$CHANNEL_ID/downloaded-videos.txt
 HASH_PATH=$HURQ_PATH/$CHANNEL_ID/hurq-hash.txt
-VIDEO_PATH=$HURQ_PATH/$CHANNEL_ID/videos
 
 mkdir -p $HURQ_PATH
 mkdir -p $VIDEO_PATH
@@ -43,21 +42,18 @@ fi
 if [ "$CHANNEL_TYPE" = "0" ]
 then
 	CHANNEL_URL=https://www.youtube.com/channel/$CHANNEL_ID/videos
-	CHANNEL_DIR="${VIDEO_PATH}/${CHANNEL_ID}"
-	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE_PATH $CHANNEL_URL -P $VIDEO_PATH -o '%(channel_id)s/%(title)s.%(ext)s'
+	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE_PATH $CHANNEL_URL -P $HURQ_PATH -o '%(channel_id)s/%(title)s.%(ext)s'
 fi
 if [ "$CHANNEL_TYPE" = "1" ]
 then
 	CHANNEL_URL=https://www.youtube.com/c/$CHANNEL_ID/videos
-	CHANNEL_DIR="${VIDEO_PATH}/${CHANNEL_ID}"
-	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE_PATH $CHANNEL_URL -P $VIDEO_PATH -o '%(channel)s/%(title)s.%(ext)s'
+	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE_PATH $CHANNEL_URL -P $HURQ_PATH -o '%(channel)s/%(title)s.%(ext)s'
 fi
 if [ "$CHANNEL_TYPE" = "2" ]
 then
 	CHANNEL_URL=https://www.youtube.com/user/$CHANNEL_ID/videos
-	CHANNEL_DIR="${VIDEO_PATH}/${CHANNEL_ID}"
-	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE_PATH $CHANNEL_URL -P $VIDEO_PATH -o '%(channel)s/%(title)s.%(ext)s'
+	yt-dlp -S "+res:720,ext" -ciw --download-archive $CACHE_PATH $CHANNEL_URL -P $HURQ_PATH -o '%(channel)s/%(title)s.%(ext)s'
 fi
 
-ipfs add -r $CHANNEL_DIR
+ipfs add -r $HURQ_PATH
 ipfs pin ls --type recursive > $HASH_PATH
