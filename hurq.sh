@@ -7,15 +7,12 @@ while true; do
 	case "$1" in
 		-c|--channel-id)
 			CHANNEL_ID="$2"
-			echo $CHANNEL_ID
 			shift 2;;
 		-t|--channel-type)
 			CHANNEL_TYPE="$2"
-			echo $CHANNEL_TYPE
 			shift 2;;
 		-p|--path)
 			HURQ_PATH="$2"
-			echo $HURQ_PATH
 			shift 2;;
 		--)
 			break;;
